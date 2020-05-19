@@ -1,0 +1,73 @@
+COPTS = [
+    "-Iincludes",
+    "-std=c++17",
+]
+
+LINKOPS = [
+    "-pthread",
+]
+
+DEPS = [
+    "//:cpp_redis",
+    ":winsock",
+]
+
+cc_library(
+    name = "winsock",
+    srcs = [],
+    hdrs = ["winsock_initializer.h"],
+)
+
+cc_binary(
+    name = "subscriber",
+    srcs = ["cpp_redis_subscriber.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
+
+cc_binary(
+    name = "kill",
+    srcs = ["cpp_redis_kill.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
+
+cc_binary(
+    name = "client",
+    srcs = ["cpp_redis_client.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
+
+cc_binary(
+    name = "logger",
+    srcs = ["cpp_redis_logger.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
+
+cc_binary(
+    name = "future_client",
+    srcs = ["cpp_redis_future_client.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
+
+cc_binary(
+    name = "high_availability_client",
+    srcs = ["cpp_redis_high_availability_client.cpp"],
+    copts = COPTS,
+    # TODO (steple): For windows, link ws2_32 instead.
+    linkopts = LINKOPS,
+    deps = DEPS,
+)
